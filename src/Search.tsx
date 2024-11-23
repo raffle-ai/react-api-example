@@ -132,7 +132,7 @@ export const Search = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
-                <h2>Summary</h2>
+                <span>Summary</span>
                 {isLoadingSummary && (
                   <Loader2 className="h-6 w-6 animate-spin" />
                 )}
@@ -177,7 +177,7 @@ export const Search = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex justify-between">
-                <h2>Search Results</h2>
+                <span>Search Results</span>
                 {isLoadingResults && (
                   <Loader2 className="h-6 w-6 animate-spin" />
                 )}

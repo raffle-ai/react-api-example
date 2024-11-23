@@ -1,50 +1,78 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Raffle API Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository provides a minimal setup for integrating Raffle's API into a React application using Vite and TypeScript. It includes a basic project structure, HMR (Hot Module Replacement), ESLint rules, and example API calls to fetch top questions, autocomplete suggestions, summaries, and search results.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before starting, ensure you have the following:
 
-## Expanding the ESLint configuration
+1. **Development Environment**:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   - Node.js installed (v16+ recommended)
+   - A package manager such as npm
 
-- Configure the top-level `parserOptions` property like this:
+2. **Raffle User Interface (UID)**:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   - Create an **API User Interface** (formerly known as "Search UI") in the Raffle Web app. This is required to retrieve the `uid` for API calls.
+   - Follow these guides to set up your Search UI and retrieve the UID:
+     - [Create a Search UI](https://docs.raffle.ai/search-uis/create/)
+     - [Retrieve the UID](https://docs.raffle.ai/search-uis/install/)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. **Environment Variables**:
+   - Copy the `.env.example` file to a new `.env` file in the project root:
+     ```bash
+     cp .env.example .env
+     ```
+   - Add your **UID** to the `.env` file:
+     ```env
+     VITE_RAFFLE_UI_UID=your-uid-here
+     ```
+     Without the UID, the API integrations will not function correctly.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Setup
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to the local development server URL (usually `http://localhost:5173`).
+
+That's it! You're ready to explore and extend the project.
+
+## Tools Used
+
+This project leverages the following tools to streamline development and enhance the user experience:
+
+- **React**: A powerful library for building dynamic user interfaces.
+- **React Query**: Simplifies data fetching, caching, and state management for API calls.
+- **Tailwind CSS**: A utility-first CSS framework for rapid and consistent styling.
+- **TypeScript**: Adds static typing for better code quality and maintainability.
+- **useDebounce**: A custom hook from [@uidotdev/usehooks](https://www.npmjs.com/package/@uidotdev/usehooks) to optimize real-time interactions by limiting API calls during rapid input.
+
+## Features
+
+This project integrates with the Raffle API to provide the following capabilities:
+
+- **Top Questions**: Fetch commonly asked questions to guide user exploration.
+- **Autocomplete Suggestions**: Display context-aware suggestions as users type.
+- **Summaries**: Generate concise AI-driven summaries with references for quick insights.
+- **Search Results**: Retrieve detailed search results, including titles, descriptions, and links.
+
+Refer to the [React Implementation Guide](https://docs.raffle.ai/api-guides/react/) for detailed examples of how these features are implemented.
+
+## Resources
+
+- [React Implementation Guide](https://docs.raffle.ai/api-guides/react/): Step-by-step instructions for integrating Raffle's API into React.
+- [Raffle API Reference](https://docs.raffle.ai/api): Comprehensive documentation of the Raffle API endpoints.
+
+## Playing Around
+
+Once your environment is set up and the server is running, explore the API features, tweak the components, and adapt the implementation to your use case. Enjoy building!
