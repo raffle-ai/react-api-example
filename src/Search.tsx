@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 
 export const Search = () => {
   const [query, setQuery] = useState("");
+  const [userInput, setUserInput] = useState(false);
   const debouncedQuery = useDebounce(query, 500);
 
   const { data: topQuestions = [] } = useQuery({
@@ -46,17 +47,18 @@ export const Search = () => {
   });
 
   const handleSearch = async (searchQuery: string = query) => {
-    if (searchQuery.trim().length >= 3) {
-      handleFetchSummary(searchQuery);
-      handleFetchResults(searchQuery);
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery) {
+      handleFetchSummary(trimmedQuery);
+      handleFetchResults(trimmedQuery);
     }
   };
 
   useEffect(() => {
-    if (debouncedQuery.length >= 3) {
+    if (debouncedQuery.length >= 3 && userInput) {
       handleFetchSuggestions(debouncedQuery);
     }
-  }, [debouncedQuery, handleFetchSuggestions]);
+  }, [debouncedQuery, handleFetchSuggestions, userInput]);
 
   return (
     <div className="container mx-auto p-6">
@@ -70,7 +72,10 @@ export const Search = () => {
               type="text"
               className="flex-grow"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setUserInput(true);
+              }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   handleSearch();
@@ -100,6 +105,7 @@ export const Search = () => {
                       key={index}
                       className="cursor-pointer hover:text-blue-500 transition-colors"
                       onClick={() => {
+                        setUserInput(false);
                         setQuery(suggestion);
                         handleSearch(suggestion);
                       }}
@@ -113,6 +119,7 @@ export const Search = () => {
                       key={index}
                       className="cursor-pointer hover:text-blue-500 transition-colors"
                       onClick={() => {
+                        setUserInput(false);
                         setQuery(question.question);
                         handleSearch(question.question);
                       }}
