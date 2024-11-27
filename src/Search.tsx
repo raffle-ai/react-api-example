@@ -85,7 +85,7 @@ export const Search = () => {
             />
             <Button
               onClick={() => handleSearch()}
-              disabled={query.trim().length <= 3}
+              disabled={query.trim().length === 0}
             >
               Search
             </Button>
