@@ -28,14 +28,21 @@ export type SummaryResponse = {
 };
 
 export type SearchResult = {
-  type: "paragraph";
-  title: string;
+  configuration: null | Record<string, unknown>;
   content: string;
-  url: string;
-  preview_url: string;
   feedback_data: string;
-  metadata: Record<string, unknown>;
-  configuration: Record<string, unknown>;
+  metadata: Array<{
+    matches: Array<{
+      tag: string;
+      attr: Record<string, string>;
+      type: string;
+    }>;
+    selector: string;
+  }>;
+  preview_url: string | null;
+  title: string;
+  type: string;
+  url: string;
 };
 
 export type SearchResultsResponse = {

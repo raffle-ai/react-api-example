@@ -11,6 +11,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
+import { getMetadataValues } from "./utils";
 
 export const Search = () => {
   const [query, setQuery] = useState("");
@@ -193,22 +194,39 @@ export const Search = () => {
             <CardContent>
               {results.length > 0 ? (
                 <ul className="space-y-4">
-                  {results.map((result, index) => (
-                    <li key={index} className="border-b pb-4 last:border-b-0">
-                      <a
-                        href={result.url}
-                        className="text-blue-500 hover:underline font-semibold"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                  {results.map((result, index) => {
+                    const { description, image } = getMetadataValues(result);
+                    return (
+                      <li
+                        key={index}
+                        className="border-b pb-4 last:border-b-0 flex gap-4"
                       >
-                        {result.title}
-                      </a>
-                      <p
-                        className="text-gray-600 mt-1"
-                        dangerouslySetInnerHTML={{ __html: result.content }}
-                      />
-                    </li>
-                  ))}
+                        {image && (
+                          <div className="h-20 aspect-video overflow-hidden rounded-sm">
+                            <img
+                              src={image}
+                              alt={result.title}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
+                        )}
+
+                        <div className="w-full">
+                          <a
+                            href={result.url}
+                            className="text-blue-500 hover:underline font-semibold"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {result.title}
+                          </a>
+                          {description && (
+                            <p className="text-gray-600 mt-1">{description}</p>
+                          )}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 <p className="text-gray-500">
