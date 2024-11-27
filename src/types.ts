@@ -6,27 +6,6 @@ export type TopQuestionsResponse = {
   questions: Array<Question>;
 };
 
-export type Suggestion = {
-  suggestion: string;
-};
-
-export type SuggestionsResponse = {
-  suggestions: Array<Suggestion>;
-};
-
-export type Reference = {
-  index: number;
-  title: string;
-  url: string;
-  content: string;
-};
-
-export type SummaryResponse = {
-  status: "success" | "no-relevant-results";
-  summary: string;
-  references: Array<Reference>;
-};
-
 export type SearchResult = {
   configuration: null | Record<string, unknown>;
   content: string;

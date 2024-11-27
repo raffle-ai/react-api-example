@@ -1,9 +1,4 @@
-import {
-  SearchResultsResponse,
-  SuggestionsResponse,
-  SummaryResponse,
-  TopQuestionsResponse,
-} from "../types";
+import { SearchResultsResponse, TopQuestionsResponse } from "../types";
 import { routes } from "./routes";
 import { urlBuilder } from "./utils";
 
@@ -24,17 +19,6 @@ export const fetchTopQuestions = async () => {
   return data.questions;
 };
 
-export const fetchSuggestions = async (query: string) => {
-  const url = urlBuilder(routes.suggestionsURL, {
-    uid,
-    query,
-    limit: "5",
-  });
-  const response = await fetch(url);
-  const data = (await response.json()) as SuggestionsResponse;
-  return data.suggestions;
-};
-
 export const fetchSearchResults = async (query: string) => {
   const url = urlBuilder(routes.searchURL, {
     uid,
@@ -46,11 +30,4 @@ export const fetchSearchResults = async (query: string) => {
   const response = await fetch(url);
   const data = (await response.json()) as SearchResultsResponse;
   return data.results;
-};
-
-export const fetchSummary = async (query: string) => {
-  const url = urlBuilder(routes.summaryURL, { uid, query });
-  const response = await fetch(url);
-  const data = await response.json();
-  return data as SummaryResponse;
 };
