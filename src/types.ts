@@ -6,16 +6,20 @@ export type TopQuestionsResponse = {
   questions: Array<Question>;
 };
 
+export type HTMLNode = {
+  tag?: string;
+  type: "tag" | "text";
+  attr?: Record<string, string>;
+  data?: string;
+  children?: HTMLNode[];
+};
+
 export type SearchResult = {
   configuration: null | Record<string, unknown>;
   content: string;
   feedback_data: string;
   metadata: Array<{
-    matches: Array<{
-      tag: string;
-      attr: Record<string, string>;
-      type: string;
-    }>;
+    matches: HTMLNode[];
     selector: string;
   }>;
   preview_url: string | null;

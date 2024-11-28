@@ -7,8 +7,8 @@ export const getMetadataValues = (data: SearchResult) => {
 
   const imageMetadata = data.metadata.find((meta) => meta.selector === "image");
 
-  const description = descriptionMetadata?.matches[0]?.attr.content || null;
-  const image = imageMetadata?.matches[0]?.attr.content || null;
+  const description = descriptionMetadata?.matches[0].attr?.content || null;
+  const image = imageMetadata?.matches[0].attr?.content || null;
 
   return { description, image };
 };

@@ -1,6 +1,6 @@
-# React + TypeScript + Vite + Raffle API Integration
+# React + TypeScript + Vite + Raffle API Integration + Search results customization
 
-This repository provides a minimal setup for integrating Raffle's API into a React application using Vite and TypeScript. It includes a basic project structure, HMR (Hot Module Replacement), ESLint rules, and example API calls to fetch top questions, autocomplete suggestions, summaries, and search results.
+This repository provides a minimal setup for integrating Raffle's API into a React application using Vite and TypeScript. It includes a basic project structure, HMR (Hot Module Replacement), ESLint rules, and example API calls to fetch top questions, and search results. Finally, it includes an implementation to use css metadata selectors.
 
 ## Prerequisites
 
@@ -55,16 +55,13 @@ This project leverages the following tools to streamline development and enhance
 - **React Query**: Simplifies data fetching, caching, and state management for API calls.
 - **Tailwind CSS**: A utility-first CSS framework for rapid and consistent styling.
 - **TypeScript**: Adds static typing for better code quality and maintainability.
-- **useDebounce**: A custom hook from [@uidotdev/usehooks](https://www.npmjs.com/package/@uidotdev/usehooks) to optimize real-time interactions by limiting API calls during rapid input.
 
 ## Features
 
 This project integrates with the Raffle API to provide the following capabilities:
 
 - **Top Questions**: Fetch commonly asked questions to guide user exploration.
-- **Autocomplete Suggestions**: Display context-aware suggestions as users type.
-- **Summaries**: Generate concise AI-driven summaries with references for quick insights.
-- **Search Results**: Retrieve detailed search results, including titles, descriptions, and links.
+- **Search Results**: Retrieve detailed search results, including titles, descriptions, and links. These include css metadata selectors.
 
 Refer to the [React Implementation Guide](https://docs.raffle.ai/api-guides/react/) for detailed examples of how these features are implemented.
 
