@@ -149,7 +149,7 @@ export const Search = () => {
               {summary?.status === "success" ? (
                 <>
                   <div
-                    className="[&>ol]:pl-6 [&>ol]:list-decimal [&>ul]:pl-6 [&>ul]:list-disc"
+                    className="[&>ol]:pl-6 [&>ol]:list-decimal [&>ul]:pl-6 [&>ul]:list-disc [&>p>a]:text-blue-500 [&>p>a]:font-semibold"
                     dangerouslySetInnerHTML={{ __html: summary.summary }}
                   />
 
